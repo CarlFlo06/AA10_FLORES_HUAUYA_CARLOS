@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thiymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:text="${titulo}">Editar</title>
+	<link
+		href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+		rel="stylesheet"
+		integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD"
+		crossorigin="anonymous">
+	<style>
+	* {
+		margin: 0px;
+	}
+	.bordes {
+		border: 1px solid gray;
+	}
+	
+	input {
+		margin: 0px;
+		margin-bottom: 25px;
+		box-shadow: 0px 0px 1px 1px gray;
+	}
+	
+	select {
+		margin-bottom: 25px;
+		box-shadow: 0px 0px 1px 1px gray;
+	}
+	
+	li {
+	   display: inline-block;
+	   position: relative;
+	   padding: 0.5em;
+	   line-height: 24px;
+	   color: white;
+	   background-color: #D3E9EA;
+	   font-weight: bold;
+	}
+	
+	li:not(:first-child) { /* todos los items menos el primero */
+	   padding-left: 3em; /* compensación de la flecha a la izquierda para que no pise el texto*/
+	}
+	
+	li::after { /* flecha a la derecha */
+	   content: "";
+	   display: block;
+	   position: absolute;
+	   top: 0;
+	   right: -18px;
+	   z-index: 2;
+	   border-top: 27px solid transparent;
+	   border-left: 18px solid #D3E9EA;
+	   border-bottom: 27px solid transparent;
+	
+	}
+	
+	li:not(:first-child)::before {
+	   content: "";
+	   display: block;
+	   position: absolute;
+	   top: 0;
+	   left: 0;
+	   z-index: 1;
+	   border-top: 27px solid transparent;
+	   border-left: 18px solid black;
+	   border-bottom: 27px solid transparent;
+	}
+	
+	</style>
+</head>
+<body>
+	<div class="w-100">
+		<nav class="w-100 navbar navbar-expand-lg navbar-light bg-light">	
+			<ul class="navbar-nav">
+				<li class="nav-item arrowText arrowRight"><a class="nav-link" href="#">Home</a></li>
+				<li class="nav-item arrowText arrowRight"><a class="nav-link" href="/">Lista</a></li>
+				<li class="nav-item arrowText arrowRight"><a class="nav-link" href="/form">Registro</a></li>
+				<li class="nav-item arrowText arrowRight"><a class="nav-link" href="#">Final Step</a></li>
+			</ul>
+		</nav>
+	</div>
+	<div th:remove="tag" class="container-xxl">
+		<form class="mx-4" th:object="${afiliado}" th:action="@{/}" th:method="post">
+			
+			<div class="">
+			<div class="row row-cols-1 row-cols-sm-3 justify-content-end">
+				
+				<button class="btn col btn-secondary w-25" type="submit">Guardar</button>
+				<button class="btn col btn-outline-secondary w-25 mx-3" type="reset">Cancelar</button>
+			</div>
+			</div>
+			<div class="col-sm-1">
+				<input type="text" th:field="*{id}" class="form-control">
+			</div>
+			<div class="bordes px-4 mt-3">
+				<h1 class="mb-5 text-secondary">Editar Afiliados</h1>
+				<div class="row row-cols-1 row-cols-sm-3">
+					<div class="col-sm-6">
+						<label class="mb-2">Nombres Completos:</label>
+						<input type="text" th:field="*{nombresCompletos}" class="form-control"
+							placeholder="Nombres Completos">
+					</div>
+					<div class="col-sm-3">
+						<label class="mb-2">Apellido Paterno:</label>
+						<input type="text" th:field="*{apellidoPaterno}" class="form-control"
+							placeholder="Apellido Paterno">
+					</div>
+					<div class="col-sm-3">
+						<label class="mb-2">Apellido Materno:</label>
+						<input type="text" th:field="*{apellidoMaterno}" class="form-control"
+							placeholder="Apellido Materno">
+					</div>
+				</div>
+				<div class="row row-cols-1 row-cols-sm-3">
+					<div class="col-sm-3">
+						<label class="mb-2">Tipo de documento:</label>
+						<select class="form-select" th:field="*{tipoDocumento}">
+							<option th:value="DNI">DNI</option>
+							<option th:value="DocumentodeExtranjeria">Documento de extranjeria</option>
+						</select>
+						
+					</div>
+					<div class="col-sm-3">
+						<label class="mb-2">Número de Documento:</label>
+						<input type="number" th:field="*{numeroDocumento}" class="form-control"
+							placeholder="Número de Documento">
+					</div>
+					<div class="col-sm-6">
+						<label class="mb-2">Dirección:</label>
+						<input type="text" th:field="*{direccion}" class="form-control" placeholder="Dirección">
+					</div>
+				</div>
+				<div class="row row-cols-1 row-cols-sm-3">
+					<div class="col-sm-6">
+						<label class="mb-2">E-mail:</label>
+						<input type="email" th:field="*{email}" class="form-control" placeholder="E-mail">
+					</div>
+					<div class="col-sm-3">
+						<label class="mb-2">Telefono 1:</label>
+						<input type="number" th:field="*{telefono1}" class="form-control" placeholder="Telefono 1">
+					</div>
+					<div class="col-sm-3">
+						<label class="mb-2">Telefono 2:</label>
+						<input type="number" th:field="*{telefono2}" class="form-control" placeholder="Telefono 2">
+					</div>
+				</div>
+			</div>
+		</form>
+	</div>
+</body>
+</html>
